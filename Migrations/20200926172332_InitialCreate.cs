@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace GameAPI.Migrations
+namespace game_api.Migrations
 {
     public partial class InitialCreate : Migration
     {
@@ -94,12 +94,12 @@ namespace GameAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreateAt", "Email", "Password", "Removed", "Role", "UpdateAt" },
-                values: new object[] { 1, new DateTime(2020, 9, 25, 16, 47, 20, 965, DateTimeKind.Local).AddTicks(528), "teste1@teste.com", "12345", false, "admin", new DateTime(2020, 9, 25, 16, 47, 20, 968, DateTimeKind.Local).AddTicks(6269) });
+                values: new object[] { 1, new DateTime(2020, 9, 26, 14, 23, 31, 534, DateTimeKind.Local).AddTicks(5868), "teste1@teste.com", "12345", false, "admin", new DateTime(2020, 9, 26, 14, 23, 31, 542, DateTimeKind.Local).AddTicks(4422) });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreateAt", "Email", "Password", "Removed", "Role", "UpdateAt" },
-                values: new object[] { 2, new DateTime(2020, 9, 25, 16, 47, 20, 972, DateTimeKind.Local).AddTicks(8821), "teste2@teste.com", "12345", false, "user", new DateTime(2020, 9, 25, 16, 47, 20, 972, DateTimeKind.Local).AddTicks(8875) });
+                values: new object[] { 2, new DateTime(2020, 9, 26, 14, 23, 31, 544, DateTimeKind.Local).AddTicks(7731), "teste2@teste.com", "12345", false, "user", new DateTime(2020, 9, 26, 14, 23, 31, 544, DateTimeKind.Local).AddTicks(7783) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_GameLents_FriendId",

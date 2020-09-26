@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace GameAPI.Migrations
+namespace game_api.Migrations
 {
     [DbContext(typeof(GameDbContext))]
-    [Migration("20200925194721_InitialCreate")]
+    [Migration("20200926172332_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -141,29 +141,29 @@ namespace GameAPI.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2020, 9, 25, 16, 47, 20, 965, DateTimeKind.Local).AddTicks(528),
+                            CreateAt = new DateTime(2020, 9, 26, 14, 23, 31, 534, DateTimeKind.Local).AddTicks(5868),
                             Email = "teste1@teste.com",
                             Password = "12345",
                             Removed = false,
                             Role = "admin",
-                            UpdateAt = new DateTime(2020, 9, 25, 16, 47, 20, 968, DateTimeKind.Local).AddTicks(6269)
+                            UpdateAt = new DateTime(2020, 9, 26, 14, 23, 31, 542, DateTimeKind.Local).AddTicks(4422)
                         },
                         new
                         {
                             Id = 2,
-                            CreateAt = new DateTime(2020, 9, 25, 16, 47, 20, 972, DateTimeKind.Local).AddTicks(8821),
+                            CreateAt = new DateTime(2020, 9, 26, 14, 23, 31, 544, DateTimeKind.Local).AddTicks(7731),
                             Email = "teste2@teste.com",
                             Password = "12345",
                             Removed = false,
                             Role = "user",
-                            UpdateAt = new DateTime(2020, 9, 25, 16, 47, 20, 972, DateTimeKind.Local).AddTicks(8875)
+                            UpdateAt = new DateTime(2020, 9, 26, 14, 23, 31, 544, DateTimeKind.Local).AddTicks(7783)
                         });
                 });
 
             modelBuilder.Entity("GameAPI.Models.GameLoan", b =>
                 {
                     b.HasOne("GameAPI.Models.Friend", "Friend")
-                        .WithMany("GameLents")
+                        .WithMany("GameLoans")
                         .HasForeignKey("FriendId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

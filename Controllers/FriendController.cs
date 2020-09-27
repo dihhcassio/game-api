@@ -39,7 +39,7 @@ namespace GameAPI.Controllers
 
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route("")]
         public dynamic Delete([FromBody] Friend friend)
         {
             _friendRepository.Delete(friend);

@@ -39,9 +39,13 @@ namespace GameAPI.Controllers
 
 
         [HttpDelete]
-        [Route("")]
-        public dynamic Delete([FromBody] Friend friend)
+        [Route("{id}")]
+        public dynamic Delete(int id)
         {
+            var friend = _friendRepository.Get(id);
+            if (friend == null)
+                return NotFound();
+                
             _friendRepository.Delete(friend);
             _friendRepository.Save();
             return new { sucess = true };

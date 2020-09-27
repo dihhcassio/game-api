@@ -39,9 +39,13 @@ namespace GameAPI.Controllers
 
 
         [HttpDelete]
-        [Route("")]
-        public dynamic Delete([FromBody] Game game)
-        {
+        [Route("{id}")]
+        public dynamic Delete(int id)
+        { 
+            var game =  _gameRepository.Get(id);
+            if (game == null)
+                return NotFound();
+                
             _gameRepository.Delete(game);
             _gameRepository.Save();
             return new { sucess = true };

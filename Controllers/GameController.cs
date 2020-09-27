@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using GameAPI.Models;
 using GameAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
@@ -41,11 +40,11 @@ namespace GameAPI.Controllers
         [HttpDelete]
         [Route("{id}")]
         public dynamic Delete(int id)
-        { 
-            var game =  _gameRepository.Get(id);
+        {
+            var game = _gameRepository.Get(id);
             if (game == null)
                 return NotFound();
-                
+
             _gameRepository.Delete(game);
             _gameRepository.Save();
             return new { sucess = true };
@@ -55,7 +54,11 @@ namespace GameAPI.Controllers
         [Route("{id}")]
         public object Get(int id)
         {
-            var game =  _gameRepository.Get(id);
+            var game = _gameRepository.Get(id);
+
+            if (game == null)
+                return NotFound();
+
             return new
             {
                 game.Id,
@@ -87,15 +90,24 @@ namespace GameAPI.Controllers
                 g.Title,
                 g.Category,
                 CurrentLoan = g.GameLoans.Where(gl => gl.Status == LentStatus.DELIVERED)
-                    .Select(gl => 
-                        new { gl.Status, 
-                            gl.DeliveredDate, 
-                            gl.ReceivedDate, 
-                            FriendName = gl.Friend.Name })
+                    .Select(gl =>
+                        new
+                        {
+                            gl.Status,
+                            gl.DeliveredDate,
+                            gl.ReceivedDate,
+                            FriendName = gl.Friend.Name
+                        })
                     .FirstOrDefault()
             }).ToList();
         }
 
+        [HttpGet]
+        [Route("available")]
+        public IEnumerable<Game> GetAvailable()
+        {
+            return _gameRepository.GetAvailable();
+        }
 
     }
 }

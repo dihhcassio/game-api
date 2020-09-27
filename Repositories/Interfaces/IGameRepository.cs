@@ -8,5 +8,6 @@ namespace GameAPI.Repositories
 {
     public interface IGameRepository : IBaseRepository<Game>
     {
+        IEnumerable<Game> GetAvailable();
     }
 }

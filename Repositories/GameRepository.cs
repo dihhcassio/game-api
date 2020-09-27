@@ -38,20 +38,6 @@ namespace GameAPI.Repositories
                 .Where(f => !f.Removed).ToList();
         }
 
-        public IEnumerable<object> GetLents()
-        {
-            var query = from g in _ctx.Set<Game>()
-                        join gl in _ctx.Set<GameLoan>() on g.Id equals gl.GameId
-                        where !g.Removed
-                        select new { g };
-            return query.ToList();
-        }
-
-        public IEnumerable<object> GetNotLents()
-        {
-            return null;
-        }
-
         public Game Insert(Game game)
         {
             game.CreateAt = DateTime.Now;
@@ -69,6 +55,26 @@ namespace GameAPI.Repositories
             game.UpdateAt = DateTime.Now;
             _ctx.Games.Update(game);
             return game;
+        }
+
+        public IEnumerable<Game> GetAvailable(){
+            var result = from game in _ctx.Games
+                join gameLents in _ctx.GameLents on game.Id equals gameLents.GameId into Details
+                from m in Details.DefaultIfEmpty()
+                where m.Status == LentStatus.RECEIVED || game.GameLoans.Count == 0
+                select new
+                {
+                    game.Id,
+                    game.Title,
+                    game.Category
+                };
+                
+            return result.Select(r => new Game()
+            {
+                Id = r.Id, 
+                Title = r.Title,
+                Category = r.Category
+            });
         }
     }
 }

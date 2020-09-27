@@ -55,16 +55,40 @@ namespace GameAPI.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public GameLoan Get(int id)
+        public object Get(int id)
         {
-            return _gameLoanRepository.Get(id);
+            var gameLoan = _gameLoanRepository.Get(id);
+            if (gameLoan == null)
+                return NotFound();
+
+            return gameLoan;
         }
 
         [HttpGet]
         [Route("all")]
-        public IEnumerable<GameLoan> GetAll()
+        public IEnumerable<object> GetAll()
         {
-            return _gameLoanRepository.GetAll();
+            var gamesLoans =  _gameLoanRepository.GetAll();
+            return gamesLoans.Select( gl =>
+                new 
+                {
+                    gl.Id, 
+                    gl.ReceivedDate, 
+                    gl.DeliveredDate, 
+                    gl.Status, 
+                    Friend = new 
+                    {
+                        gl.Friend.Id, 
+                        gl.Friend.Name, 
+                        gl.Friend.Phone
+                    }, 
+                    Game = new {
+                        gl.Game.Id,
+                        gl.Game.Title, 
+                        gl.Game.Category
+                    }
+                }                
+            );
         }
 
     }

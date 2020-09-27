@@ -7,6 +7,6 @@ namespace GameAPI.Models
     {
         public string Title { get; set; }
         public string Category { get; set; }
-        public List<GameLoan> GameLoans { get; } = new List<GameLoan>();
+        public List<GameLoan> GameLoans { get; set; } = new List<GameLoan>();
     }
 }

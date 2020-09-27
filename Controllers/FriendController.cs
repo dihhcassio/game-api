@@ -57,6 +57,9 @@ namespace GameAPI.Controllers
         {
             var friend = _friendRepository.Get(id);
 
+            if (friend == null)
+                return NotFound();
+
             return new
             {
                 friend.Id,

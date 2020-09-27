@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace GameAPI.Repositories
 {
@@ -23,12 +24,18 @@ namespace GameAPI.Repositories
 
         public GameLoan Get(int id)
         {
-            return _ctx.GameLents.Where(g => !g.Removed && g.Id == id).FirstOrDefault();
+            return _ctx.GameLents
+                .Include(g => g.Game)
+                .Include(g => g.Friend)
+                .Where(g => !g.Removed && g.Id == id).FirstOrDefault();
         }
 
         public IEnumerable<GameLoan> GetAll()
         {
-            return _ctx.GameLents.Where(g => !g.Removed).ToList();
+            return _ctx.GameLents
+                .Include(g => g.Game)
+                .Include(g => g.Friend)
+                .Where(g => !g.Removed).ToList();
         }
 
         public GameLoan GetDeliveredByGame(int gameId)

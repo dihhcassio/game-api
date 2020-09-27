@@ -53,7 +53,7 @@ namespace GameAPI.Repositories
         public Friend Update(Friend friend)
         {
             friend.UpdateAt = DateTime.Now;
-            _ctx.Friends.Add(friend);
+            _ctx.Friends.Update(friend);
             return friend;
         }
     }

@@ -74,7 +74,7 @@ namespace GameAPI.Controllers
                             gl.ReceivedDate,
                             GameTitle = gl.Game.Title
                         })
-                    .FirstOrDefault()
+                    .ToList()
             };
         }
 
@@ -98,7 +98,7 @@ namespace GameAPI.Controllers
                             gl.ReceivedDate,
                             GameTitle = gl.Game.Title
                         })
-                    .FirstOrDefault()
+                    .ToList ()
             }).ToList();
         }
 

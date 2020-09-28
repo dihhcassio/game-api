@@ -58,23 +58,18 @@ namespace GameAPI.Repositories
         }
 
         public IEnumerable<Game> GetAvailable(){
-            var result = from game in _ctx.Games
+            var gamesLends = from game in _ctx.Games
                 join gameLents in _ctx.GameLents on game.Id equals gameLents.GameId into Details
-                from m in Details.DefaultIfEmpty()
-                where m.Status == LentStatus.RECEIVED || game.GameLoans.Count == 0
+                from m in Details
+                where m.Status == LentStatus.DELIVERED
                 select new
                 {
-                    game.Id,
-                    game.Title,
-                    game.Category
+                    game.Id
                 };
-                
-            return result.Select(r => new Game()
-            {
-                Id = r.Id, 
-                Title = r.Title,
-                Category = r.Category
-            });
+            
+            var gamesIds = gamesLends.Select(gl => gl.Id);
+
+            return _ctx.Games.Where(g => !gamesIds.Contains(g.Id)).ToList();
         }
     }
 }

@@ -15,7 +15,7 @@ services:
       - db-game:/var/lib/mysql
       
   game-api: 
-    image: game-api
+    image: game-api:dev
     build:
       context: .
       dockerfile: Dockerfile

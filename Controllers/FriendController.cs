@@ -30,8 +30,14 @@ namespace GameAPI.Controllers
 
         [HttpPut]
         [Route("")]
-        public dynamic Update([FromBody] Friend friend)
+        public dynamic Update([FromBody] Friend model)
         {
+            var friend = _friendRepository.Get(model.Id);
+            if (friend == null)
+                NotFound();
+            
+            friend.Name = model.Name;
+            friend.Phone = model.Phone;
             _friendRepository.Update(friend);
             _friendRepository.Save();
             return new { sucess = true, id = friend.Id };

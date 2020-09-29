@@ -29,8 +29,15 @@ namespace GameAPI.Controllers
 
         [HttpPut]
         [Route("")]
-        public dynamic Update([FromBody] Game game)
+        public dynamic Update([FromBody] Game model)
         {
+            var game = _gameRepository.Get(model.Id);
+            if (game == null)
+                NotFound();
+            
+            game.Title = model.Title;
+            game.Category = model.Category;
+            
             _gameRepository.Update(game);
             _gameRepository.Save();
             return new { sucess = true, id = game.Id };

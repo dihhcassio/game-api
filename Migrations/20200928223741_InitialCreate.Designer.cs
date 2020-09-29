@@ -9,35 +9,36 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace game_api.Migrations
 {
     [DbContext(typeof(GameDbContext))]
-    [Migration("20200926172332_InitialCreate")]
+    [Migration("20200928223741_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8");
+                .HasAnnotation("ProductVersion", "3.1.8")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("GameAPI.Models.Friend", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreateAt")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("text");
 
                     b.Property<string>("Phone")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("text");
 
                     b.Property<bool>("Removed")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("UpdateAt")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime");
 
                     b.HasKey("Id");
 
@@ -48,22 +49,22 @@ namespace game_api.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Category")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("CreateAt")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("Removed")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("UpdateAt")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime");
 
                     b.HasKey("Id");
 
@@ -74,31 +75,31 @@ namespace game_api.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreateAt")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime");
 
                     b.Property<DateTime>("DeliveredDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime");
 
                     b.Property<int>("FriendId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int>("GameId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("ReceivedDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime");
 
                     b.Property<bool>("Removed")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<int>("Status")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdateAt")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime");
 
                     b.HasKey("Id");
 
@@ -113,25 +114,25 @@ namespace game_api.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreateAt")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("Email")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("text");
 
                     b.Property<string>("Password")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("text");
 
                     b.Property<bool>("Removed")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Role")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("UpdateAt")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime");
 
                     b.HasKey("Id");
 
@@ -141,22 +142,22 @@ namespace game_api.Migrations
                         new
                         {
                             Id = 1,
-                            CreateAt = new DateTime(2020, 9, 26, 14, 23, 31, 534, DateTimeKind.Local).AddTicks(5868),
+                            CreateAt = new DateTime(2020, 9, 28, 19, 37, 41, 358, DateTimeKind.Local).AddTicks(4409),
                             Email = "teste1@teste.com",
                             Password = "12345",
                             Removed = false,
                             Role = "admin",
-                            UpdateAt = new DateTime(2020, 9, 26, 14, 23, 31, 542, DateTimeKind.Local).AddTicks(4422)
+                            UpdateAt = new DateTime(2020, 9, 28, 19, 37, 41, 365, DateTimeKind.Local).AddTicks(1612)
                         },
                         new
                         {
                             Id = 2,
-                            CreateAt = new DateTime(2020, 9, 26, 14, 23, 31, 544, DateTimeKind.Local).AddTicks(7731),
+                            CreateAt = new DateTime(2020, 9, 28, 19, 37, 41, 367, DateTimeKind.Local).AddTicks(897),
                             Email = "teste2@teste.com",
                             Password = "12345",
                             Removed = false,
                             Role = "user",
-                            UpdateAt = new DateTime(2020, 9, 26, 14, 23, 31, 544, DateTimeKind.Local).AddTicks(7783)
+                            UpdateAt = new DateTime(2020, 9, 28, 19, 37, 41, 367, DateTimeKind.Local).AddTicks(931)
                         });
                 });
 

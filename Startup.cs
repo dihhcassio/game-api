@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.EntityFrameworkCore;
 
 namespace GameAPI
 {
@@ -26,11 +27,17 @@ namespace GameAPI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var host = Configuration["DBHOST"] ?? "127.0.0.1";
+            var port = Configuration["DBPORT"] ?? "3309";
+            var user = Configuration["DBUSER"] ?? "game";
+            var password = Configuration["DBPASSWORD"] ?? "game123";
+            var database = Configuration["DBNAME"] ?? "game";
+
+            services.AddDbContext<GameDbContext>(options =>options.UseMySQL($"server={host};port={port};user={user};password={password};database={database};SslMode=None"));
+
             services.AddControllers();
-            services.AddDbContext<GameDbContext>();
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IFriendRepository, FriendRepository>();
@@ -55,8 +62,6 @@ namespace GameAPI
                     ValidateAudience = false
                 };
             });
-
-           
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -79,7 +84,13 @@ namespace GameAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+           
             });
-        }
+
+            using (var scope =  app.ApplicationServices.CreateScope())
+                using (var context = scope.ServiceProvider.GetService<GameDbContext>())
+                    context.Database.EnsureCreated();
+                }
     }
 }

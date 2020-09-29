@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using GameAPI.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameAPI
 {
     public class GameDbContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            options.UseSqlite("Data Source=game.db");
-        }
+       public GameDbContext(DbContextOptions<GameDbContext> options):base(options){}
 
         public DbSet<User> Users { get; set; }       
         public DbSet<Game> Games { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using MySql.Data.EntityFrameworkCore.Metadata;
 
 namespace game_api.Migrations
 {
@@ -12,7 +13,7 @@ namespace game_api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     CreateAt = table.Column<DateTime>(nullable: false),
                     UpdateAt = table.Column<DateTime>(nullable: false),
                     Removed = table.Column<bool>(nullable: false),
@@ -29,7 +30,7 @@ namespace game_api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     CreateAt = table.Column<DateTime>(nullable: false),
                     UpdateAt = table.Column<DateTime>(nullable: false),
                     Removed = table.Column<bool>(nullable: false),
@@ -46,7 +47,7 @@ namespace game_api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     CreateAt = table.Column<DateTime>(nullable: false),
                     UpdateAt = table.Column<DateTime>(nullable: false),
                     Removed = table.Column<bool>(nullable: false),
@@ -64,7 +65,7 @@ namespace game_api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     CreateAt = table.Column<DateTime>(nullable: false),
                     UpdateAt = table.Column<DateTime>(nullable: false),
                     Removed = table.Column<bool>(nullable: false),
@@ -94,12 +95,12 @@ namespace game_api.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreateAt", "Email", "Password", "Removed", "Role", "UpdateAt" },
-                values: new object[] { 1, new DateTime(2020, 9, 26, 14, 23, 31, 534, DateTimeKind.Local).AddTicks(5868), "teste1@teste.com", "12345", false, "admin", new DateTime(2020, 9, 26, 14, 23, 31, 542, DateTimeKind.Local).AddTicks(4422) });
+                values: new object[] { 1, new DateTime(2020, 9, 28, 19, 37, 41, 358, DateTimeKind.Local).AddTicks(4409), "teste1@teste.com", "12345", false, "admin", new DateTime(2020, 9, 28, 19, 37, 41, 365, DateTimeKind.Local).AddTicks(1612) });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreateAt", "Email", "Password", "Removed", "Role", "UpdateAt" },
-                values: new object[] { 2, new DateTime(2020, 9, 26, 14, 23, 31, 544, DateTimeKind.Local).AddTicks(7731), "teste2@teste.com", "12345", false, "user", new DateTime(2020, 9, 26, 14, 23, 31, 544, DateTimeKind.Local).AddTicks(7783) });
+                values: new object[] { 2, new DateTime(2020, 9, 28, 19, 37, 41, 367, DateTimeKind.Local).AddTicks(897), "teste2@teste.com", "12345", false, "user", new DateTime(2020, 9, 28, 19, 37, 41, 367, DateTimeKind.Local).AddTicks(931) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_GameLents_FriendId",

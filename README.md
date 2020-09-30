@@ -13,7 +13,7 @@ Foi implementar usando
   .Net core 3.1 com EF Core.
   
 Usuário para testes:
- -email: teste1@teste.com
+ - email: teste1@teste.com
  - password: 12345
  
  

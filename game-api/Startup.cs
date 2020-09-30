@@ -89,8 +89,9 @@ namespace GameAPI
             });
 
             using (var scope =  app.ApplicationServices.CreateScope())
-                using (var context = scope.ServiceProvider.GetService<GameDbContext>())
+                using (var context = scope.ServiceProvider.GetService<GameDbContext>()){
                     context.Database.EnsureCreated();
                 }
+        }
     }
 }

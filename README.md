@@ -9,10 +9,11 @@ Requisitos:
     - Não podendo emprestar o mesmo jogo para amigos diferente ao mesmo tempo.
  - Receber devolução do jogo.
 
-Foi implementar usando
-  .Net core 3.1 com EF Core.
+# Tecnologias usadas:
+  - .Net core 3.1 
+  - Entity Framework Core.
   
-Usuário para testes:
+# Usuário para testes:
  - email: teste1@teste.com
  - password: 12345
  
